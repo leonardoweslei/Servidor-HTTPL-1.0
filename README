@@ -1,0 +1,43 @@
+Este programa visa implementar um servidor HTTP simples
+Para implementa-lo foram usados sockets pra escutar a porta 8080, forks para atender as requisições, memoria compartilhada para armazenas a quantidade de processos finalizados e em execução, semaforos para controlar o acesso as memorias e aos arquivos de log e de processos, e sinais para limpar as memorias remover semáforos e matar processos filhos.
+Na compilação podem existir varios 'warnings' mas não influenciam no funcionamento do programa.
+Para sair do servidor é só dar um ctrl+c ou um kill no pid do programa.
+É possivel personalizar a quantidade maxima de processos, arquivo padrão de erro, modo de gravação de log, pasta padrão de documentos web, porta padrão e nome do servidor.
+Foi usado um arquivo externo para recuperar os mimetypes este arquivo vou criado a partir do /etc/mime.types.
+Dentro dos arquivos de erros é possível usar variáveis como _DATE_ para data do servidor, _TIME_ para hora do servidor, _SERVER_ para nome do servidor, _ERROR_CODE_ para código do erro e _ERROR_DESC_ para descrição do erro.
+O formato de hora e data também é personalizável, assim como nome de arquivo de log e o formato da data do nome do arquivo de log.
+Para compilar o programa usa-se o comando: gcc httpServer.c -lpthread -o httpServer
+Para executar usa-se o comando: ./httpServer 
+para sair dê um kill ou um ctrl+c no processo
+Os arquivos para serem exibidos no navegador devem ser colocados na pasta definida na variável DOC_ROOT.
+Você pode personalizar o servidor alterando coisas como:
+	Porta do servidor(PORT):
+		A porta não deve estar em uso por outro aplicativo, para alterar a porta do servidor basta alterar o valor padrão de PORT que é 8080 para a porta que preferir
+	Pasta de arquivos web(DOC_ROOT):
+		Para alterar a pasta de arquivos web do servidor basta alterar o valor padrão de DOC_ROOT que é "htdocs/" para o endereço da pasta local dos arquivos do seu computador
+	Nome do servidor(SERVER):
+		Nome no servidor
+	Arquivo padrão de erro(ARQ_ERROR):
+		Arquivo que exibirá os erros como 404, 403, etc.
+	Arquivo de log(FILE_LOG):
+		Arquivo onde serão gravados os logs do servidor.
+	Formato da data no log(FILE_LOG_DATE):
+		Junto com a variável FILE_LOG formará o nome do arquivo de logs relativo ao momento.
+	Gravação de log(GRAVA_LOG):
+		Caso o valor seja 1 gravará logs do contrario não.
+	Número máximo de conexões(MAX_CONN):
+		Numero máximo de conexões simultaneas ao servidor, após o número máximo de conexões atingido é exibido um erro na tela.
+	Formato da data do servidor(TDATE):
+		Atendendo ao padrão ISO
+	Formato da hora do servidor(THOUR):
+		Atendendo ao padrão ISO
+Dentro dos arquivos de web pode-se usar variaveis como:
+SERVER_ : nome do servidor
+_ERROR_CODE_ : código do erro
+_MSG_ : mensagem do servidor
+_FILE_ : nome do arquivo
+_ERROR_DESC_ : descrição do erro
+_DATE_ : data do servidor
+_TIME_ : Hora do servidor
+
+
